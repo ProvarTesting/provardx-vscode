@@ -9,19 +9,19 @@ import * as vscode from 'vscode';
 import { CommandExecutor } from './CommandExecutor';
 import { messages } from '../messages';
 
-export const DEFAULT_SFDX_CHANNEL = vscode.window.createOutputChannel(messages.channel_name);
+export const DEFAULT_CHANNEL = vscode.window.createOutputChannel(messages.channel_name);
 
 export class ChannelService {
     private readonly channel: vscode.OutputChannel;
     private static instance: ChannelService;
 
-    public constructor(channel?: vscode.OutputChannel) {
-        this.channel = channel || DEFAULT_SFDX_CHANNEL;
+    public constructor() {
+        this.channel = DEFAULT_CHANNEL;
     }
 
-    public static getInstance(channel?: vscode.OutputChannel) {
+    public static getInstance() {
         if (!ChannelService.instance) {
-            ChannelService.instance = new ChannelService(channel);
+            ChannelService.instance = new ChannelService();
         }
         return ChannelService.instance;
     }
@@ -48,9 +48,6 @@ export class ChannelService {
                 this.channel.appendLine(messages.channel_end);
             }
             this.channel.appendLine('');
-            this.channel.appendLine(
-                '--------------------------------------------------------------------------------------'
-            );
         });
 
         execution.processErrorSubject.subscribe((data) => {
@@ -67,9 +64,6 @@ export class ChannelService {
                 this.channel.appendLine(messages.channel_end);
             }
             this.channel.appendLine('');
-            this.channel.appendLine(
-                '--------------------------------------------------------------------------------------'
-            );
         });
     }
 

@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2020 Make Positive Provar Ltd
+ * All rights reserved.
+ * Licensed under the BSD 3-Clause license.
+ * For full license text, see LICENSE.md file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { messages } from '../messages';
@@ -50,7 +57,10 @@ export class PropertiesFileSelector {
             canSelectFiles: true,
             canSelectFolders: false,
             canSelectMany: false,
-            openLabel: messages.validate_select_file
+            openLabel: messages.validate_select_file,
+            filters: {
+                'Properties File': ['json']
+            }
         });
         if (!propertiesFileUri || !propertiesFileUri.length) {
             return;

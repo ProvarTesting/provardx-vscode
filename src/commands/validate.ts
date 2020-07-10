@@ -10,7 +10,7 @@ import * as vscode from 'vscode';
 import { COMMANDS } from '../constants';
 import { messages } from '../messages';
 import {
-    ChannelService,
+    channelService,
     CommandBuilder,
     CommandExecutor,
     PreConditionChecker,
@@ -57,13 +57,13 @@ class Validate {
             });
 
             ProgressNotification.show(execution, cancellationTokenSource, COMMANDS.PROVARDX_VALIDATE);
-            ChannelService.getInstance().showChannelOutput();
-            ChannelService.getInstance().streamCommandOutput(execution);
+            channelService.showChannelOutput();
+            channelService.streamCommandOutput(execution);
         }
     }
 }
 
 export default async function validate() {
     const validate = new Validate();
-    validate.run();
+    await validate.run();
 }

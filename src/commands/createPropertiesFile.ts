@@ -23,12 +23,11 @@ class CreatePropertiesFile {
     constructor() {}
 
     public async run(): Promise<void> {
-        const provarHomeUri = await this.getProvarHome();
+        const provarHomeUri = this.getProvarHome();
         if (!fs.existsSync(provarHomeUri) || !fs.statSync(provarHomeUri).isFile) {
             vscode.window.showErrorMessage(messages.error_provar_home);
             return;
         }
-
         const provarProjectUri: string = await this.showFolderPicker(
             messages.create_properties_file_provar_project_folder
         );
@@ -52,7 +51,8 @@ class CreatePropertiesFile {
             return;
         }
 
-        this.writePropertiesFile(provarHomeUri, provarProjectUri, folderUri, propertiesFileName);
+        await this.writePropertiesFile(provarHomeUri, provarProjectUri, folderUri, propertiesFileName);
+        vscode.window.showInformationMessage(messages.create_properties_file_successMsg);
     }
 
     private async showInputBox(
@@ -119,7 +119,6 @@ class CreatePropertiesFile {
 
         const propertiesFilePath = path.join(folderUri, fileName);
         fs.writeFileSync(propertiesFilePath, propertiesFileConent);
-        vscode.window.showInformationMessage(messages.create_properties_file_successMsg);
         await vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(folderUri));
         const document = await vscode.workspace.openTextDocument(propertiesFilePath);
         vscode.window.showTextDocument(document);
@@ -137,5 +136,5 @@ class CreatePropertiesFile {
 
 export default async function createPropertiesFile() {
     const createPropertiesFile = new CreatePropertiesFile();
-    createPropertiesFile.run();
+    await createPropertiesFile.run();
 }

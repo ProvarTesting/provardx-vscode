@@ -5,7 +5,9 @@
  * For full license text, see LICENSE.md file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-export { ChannelService } from './channelService';
+import { ChannelService } from './channelService';
+export const channelService = ChannelService.getInstance();
+
 export { CommandBuilder } from './commandBuilder';
 export { CommandExecutor } from './commandExecutor';
 export { PreConditionChecker } from './preConditionChecker';

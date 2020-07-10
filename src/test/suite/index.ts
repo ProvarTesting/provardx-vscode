@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2020 Make Positive Provar Ltd
+ * All rights reserved.
+ * Licensed under the BSD 3-Clause license.
+ * For full license text, see LICENSE.md file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
 import * as path from 'path';
 import * as Mocha from 'mocha';
 import * as glob from 'glob';
@@ -5,7 +12,7 @@ import * as glob from 'glob';
 export function run(): Promise<void> {
     // Create the mocha test
     const mocha = new Mocha({
-        ui: 'tdd',
+        ui: 'bdd',
         color: true
     });
 

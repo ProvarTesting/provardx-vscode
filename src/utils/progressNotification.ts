@@ -12,7 +12,7 @@ export class ProgressNotification {
     public static show(
         execution: CommandExecutor,
         token: vscode.CancellationTokenSource,
-        progressTitle: string,
+        progressTitle?: string,
         progressLocation?: vscode.ProgressLocation
     ) {
         return vscode.window.withProgress(

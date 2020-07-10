@@ -10,7 +10,7 @@ import * as vscode from 'vscode';
 import { COMMANDS } from '../constants';
 import { messages } from '../messages';
 import {
-    ChannelService,
+    channelService,
     CommandBuilder,
     CommandExecutor,
     PreConditionChecker,
@@ -54,8 +54,8 @@ class RunTests {
             });
 
             ProgressNotification.show(execution, cancellationTokenSource, COMMANDS.PROVARDX_RUN_TESTS);
-            ChannelService.getInstance().showChannelOutput();
-            ChannelService.getInstance().streamCommandOutput(execution);
+            channelService.showChannelOutput();
+            channelService.streamCommandOutput(execution);
         }
     }
 
@@ -74,5 +74,5 @@ async function killPromise(processId: number, signal: string): Promise<void> {
 
 export default async function runTests() {
     const runTests = new RunTests();
-    runTests.run();
+    await runTests.run();
 }
