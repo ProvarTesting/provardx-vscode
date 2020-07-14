@@ -1,21 +1,32 @@
 {
     "name": "provardx-vscode",
-    "displayName": "provardx-vscode",
-    "description": "ProvarDX support for VS Code",
+    "displayName": "ProvarDX",
+    "description": "Provides integration with the ProvarDX SFDX Plugin",
     "version": "0.0.1",
-    "publisher": "provar",
+    "publisher": "ProvarTesting",
+    "author": {
+        "name": "Make Positive Provar Ltd",
+        "email": "info@provartesting.com"
+    },
     "engines": {
         "vscode": "^1.46.0"
     },
-    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ProvarTesting/provardx-vscode.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ProvarTesting/provardx-vscode/issues"
+    },
+    "icon": "images/provar-icon.png",
+    "license": "BSD-3-Clause",
     "categories": [
         "Other"
     ],
     "activationEvents": [
         "onCommand:provardx-vscode.createPropertiesFile",
         "onCommand:provardx-vscode.validate",
-        "onCommand:provardx-vscode.runTests",
-        "onCommand:extension.startTask"
+        "onCommand:provardx-vscode.runTests"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -31,10 +42,6 @@
             {
                 "command": "provardx-vscode.runTests",
                 "title": "%provardx_run_testcases%"
-            },
-            {
-                "command": "extension.startTask",
-                "title": "ProvarDX: Test async"
             }
         ]
     },
