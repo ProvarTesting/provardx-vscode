@@ -73,6 +73,5 @@ async function killPromise(processId: number, signal: string): Promise<void> {
 }
 
 export default async function runTests() {
-    const runTests = new RunTests();
-    await runTests.run();
+    await new RunTests().run();
 }

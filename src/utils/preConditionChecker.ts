@@ -24,7 +24,6 @@ export class PreConditionChecker {
                 }
                 const response = stdout.toString().trim();
                 if (response === messages.error_no_plugins_installed || response.indexOf(PLUGIN_NAME) === -1) {
-                    vscode.window.registerUriHandler;
                     const overwrite = await vscode.window.showErrorMessage(
                         messages.warning_prompt_provardx_plugin_not_installed,
                         messages.warning_prompt_continue,

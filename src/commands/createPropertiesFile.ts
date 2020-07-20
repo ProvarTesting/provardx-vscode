@@ -135,6 +135,5 @@ class CreatePropertiesFile {
 }
 
 export default async function createPropertiesFile() {
-    const createPropertiesFile = new CreatePropertiesFile();
-    await createPropertiesFile.run();
+    await new CreatePropertiesFile().run();
 }

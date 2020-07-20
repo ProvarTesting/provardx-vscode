@@ -64,6 +64,5 @@ class Validate {
 }
 
 export default async function validate() {
-    const validate = new Validate();
-    await validate.run();
+    await new Validate().run();
 }

@@ -33,13 +33,13 @@ export class CommandExecutor {
         let timerSubscriber: Subscription | null;
 
         // Process
-        this.processExitSubject = fromEvent(childProcess, 'exit') as Observable<number | undefined>;
+        this.processExitSubject = fromEvent(childProcess, 'exit');
         this.processExitSubject.subscribe((next) => {
             if (timerSubscriber) {
                 timerSubscriber.unsubscribe();
             }
         });
-        this.processErrorSubject = fromEvent(childProcess, 'error') as Observable<Error | undefined>;
+        this.processErrorSubject = fromEvent(childProcess, 'error');
         this.processErrorSubject.subscribe((next) => {
             if (timerSubscriber) {
                 timerSubscriber.unsubscribe();
