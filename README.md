@@ -17,3 +17,11 @@ Before you set up ProvarDX CLI Integration for VS Code, make sure that you have 
 
 -   **ProvarDX SFDX Plugin**  
     [Install ProvarDX SFDX plugin](https://github.com/ProvarTesting/provardx)
+
+## Documentation
+
+For documentation, visit the [Provar Support](https://www.provartesting.com/support/) documentation site.
+
+## Bugs and Feedback
+
+To report issues or suggest new feature, create a [bug/feature request on GitHub](https://github.com/ProvarTesting/provardx-vscode/issues/new).
