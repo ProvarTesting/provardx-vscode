@@ -113,9 +113,12 @@ class CreatePropertiesFile {
     ): Promise<void> {
         const resultsPath = path.join(provarProjectUri, 'ANT', 'Results');
 
-        const propertiesFileConent = DEFAULT_PROPERTIES_FILE_CONTENT.replace('{{provarHome}}', provarHomeUri)
-            .replace('{{projectPath}}', provarProjectUri)
-            .replace('{{resultsPath}}', resultsPath);
+        const propertiesFileConent = DEFAULT_PROPERTIES_FILE_CONTENT.replace(
+            '{{provarHome}}',
+            this.escapeSlashInFolderUri(provarHomeUri)
+        )
+            .replace('{{projectPath}}', this.escapeSlashInFolderUri(provarProjectUri))
+            .replace('{{resultsPath}}', this.escapeSlashInFolderUri(resultsPath));
 
         const propertiesFilePath = path.join(folderUri, fileName);
         fs.writeFileSync(propertiesFilePath, propertiesFileConent);
@@ -131,6 +134,10 @@ class CreatePropertiesFile {
             case 'win32':
                 return process.env.PROVAR_HOME || path.join('C:\\', 'Program Files', 'Provar');
         }
+    }
+
+    private escapeSlashInFolderUri(folderUri: string): string {
+        return folderUri.replace(/\\/g, '/');
     }
 }
 

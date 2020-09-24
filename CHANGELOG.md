@@ -4,6 +4,12 @@ All notable changes to the "provardx-vscode" extension will be documented in thi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.0.1 - 2020-09-24
+
+### Fixed
+
+-   Invalid Property File was generated on Windows because backslash('\') was not escaped in the file paths
+
 ## 1.0.0 - 2020-07-20
 
 ### Added
