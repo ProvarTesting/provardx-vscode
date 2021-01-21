@@ -13,3 +13,4 @@ export { CommandExecutor } from './commandExecutor';
 export { PreConditionChecker } from './preConditionChecker';
 export { ProgressNotification } from './progressNotification';
 export { PropertiesFileSelector } from './propertiesFileSelector';
+export { HttpService } from './httpService';

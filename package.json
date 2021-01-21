@@ -2,7 +2,7 @@
     "name": "provardx-vscode",
     "displayName": "ProvarDX",
     "description": "Provides integration with the ProvarDX SFDX Plugin",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "publisher": "ProvarTesting",
     "author": {
         "name": "Make Positive Provar Ltd",
@@ -26,7 +26,8 @@
     "activationEvents": [
         "onCommand:provardx-vscode.createPropertiesFile",
         "onCommand:provardx-vscode.validate",
-        "onCommand:provardx-vscode.runTests"
+        "onCommand:provardx-vscode.runTests",
+        "onCommand:provardx-vscode.generateLicenseKey"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -42,6 +43,10 @@
             {
                 "command": "provardx-vscode.runTests",
                 "title": "%provardx_run_testcases%"
+            },
+            {
+                "command": "provardx-vscode.generateLicenseKey",
+                "title": "%provardx_generateLicenseKey%"
             }
         ]
     },

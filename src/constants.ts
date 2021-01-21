@@ -37,7 +37,8 @@ export const COMMANDS = {
     PLUGINS: 'sfdx plugins',
     PROVARDX_PLUGIN_INSTALL: 'sfdx plugins:install @muenzpraeger/sfdx-plugin',
     PROVARDX_VALIDATE: 'provar:validate',
-    PROVARDX_RUN_TESTS: 'provar:runtests'
+    PROVARDX_RUN_TESTS: 'provar:runtests',
+    PROVARDX_GENERATE_LICENSE: 'provar:generateLicenseKey'
 };
 
 export const PROVARDX_GITHUB_URL = 'https://github.com/ProvarTesting/provardx';
