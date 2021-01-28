@@ -46,7 +46,7 @@ describe('Generate License Key', () => {
         registerUserStub.returns(Promise.resolve(null));
         await generateLicenseKey();
         expect(showInformationMessageStub.getCall(0).args[0]).to.equal(messages.generate_license_errorMessage);
-    }).timeout(10000);
+    }).timeout(1000);
 
     it('Should generate a license key successfully', async () => {
         inputBoxSpy.onCall(0).returns('Test');
@@ -59,5 +59,5 @@ describe('Generate License Key', () => {
         expect(showInformationMessageStub.getCall(0).args[0]).to.equal(
             `Your registration request (AKJAWFHQWHIU) has been received and is being processed, a temporary license key will be emailed to you if successfully accepted.`
         );
-    }).timeout(10000);
+    }).timeout(1000);
 });

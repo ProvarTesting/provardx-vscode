@@ -57,14 +57,14 @@ export const messages = {
     channel_end_with_error: 'ended with error',
     channel_end: 'ended',
 
-    generate_license_user_firstname: 'Enter first name.',
-    generate_license_user_lastname: 'Enter last name.',
-    generate_license_user_email_id: 'Enter email id.',
-    generate_license_user_phone: 'Enter contact number.',
-    generate_license_user_company: 'Enter company name.',
+    generate_license_user_firstname: 'Enter first name',
+    generate_license_user_lastname: 'Enter last name',
+    generate_license_user_email_id: 'Enter email id',
+    generate_license_user_phone: 'Enter contact number',
+    generate_license_user_company: 'Enter company name',
     generate_license_error_incorrect_email: 'Invalid email id',
-    generate_license_error_incorrect_contact: 'Invalid contact number.',
-    generate_license_error_contact_length: 'Contact number cannot be more than 15.',
+    generate_license_error_incorrect_contact: 'Invalid contact number',
+    generate_license_error_contact_length: 'Contact number cannot be more than 15 digits',
     generate_license_error_empty_field: 'Field cannot be empty',
-    generate_license_errorMessage: 'Registration Failed !!'
+    generate_license_errorMessage: 'Registration Failed!'
 };
