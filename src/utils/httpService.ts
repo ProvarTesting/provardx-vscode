@@ -5,6 +5,7 @@
  * For full license text, see LICENSE.md file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import * as vscode from 'vscode';
 import * as https from 'https';
 
 export class HttpService {
@@ -23,27 +24,36 @@ export class HttpService {
             }
         };
 
-        return new Promise((resolve, reject) => {
-            const req = https.request(options, (res) => {
-                let datas: any = [];
-                res.on('data', (chunk) => {
-                    datas.push(chunk);
-                }).on('end', () => {
-                    const buffer = Buffer.concat(datas).toString();
-                    if (res.statusCode === 200) {
-                        resolve(buffer);
-                    } else {
-                        resolve(null);
-                    }
+        return vscode.window.withProgress(
+            {
+                location: vscode.ProgressLocation.Notification,
+                title: 'Running Generate License Key',
+                cancellable: false
+            },
+            () => {
+                return new Promise((resolve, reject) => {
+                    const req = https.request(options, (res) => {
+                        let datas: any = [];
+                        res.on('data', (chunk) => {
+                            datas.push(chunk);
+                        }).on('end', () => {
+                            const buffer = Buffer.concat(datas).toString();
+                            if (res.statusCode === 200) {
+                                resolve(buffer);
+                            } else {
+                                resolve(null);
+                            }
+                        });
+                    });
+
+                    req.on('error', (error) => {
+                        reject(error);
+                    });
+
+                    req.write(data);
+                    req.end();
                 });
-            });
-
-            req.on('error', (error) => {
-                reject(error);
-            });
-
-            req.write(data);
-            req.end();
-        });
+            }
+        );
     }
 }
