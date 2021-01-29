@@ -70,7 +70,7 @@ describe('Create Properties File', () => {
         await createPropertiesFile();
         expect(inputBoxSpy.calledOnce).to.be.true;
         expect(inputBoxSpy()).to.be.undefined;
-    }).timeout(1000);
+    });
 
     it('Should not create properties file if Folder is undefined', async () => {
         fsExistSyncStub.onCall(0).returns(true);
@@ -102,5 +102,5 @@ describe('Create Properties File', () => {
 
         await createPropertiesFile();
         expect(showInformationMessageStub.getCall(0).args[0]).to.equal(messages.create_properties_file_successMsg);
-    }).timeout(1000);
+    });
 });
