@@ -8,22 +8,18 @@
 import * as vscode from 'vscode';
 import { messages } from '../messages';
 import { HttpService } from '../utils/httpService';
+import parseMax from 'libphonenumber-js/max';
 
 const DEFAULT_VALIDATE_INPUT = (value: string) => {
     return value === '' ? messages.generate_license_error_empty_field : null;
 };
 
 const VALIDATE_PHONE_INPUT = (value: string) => {
-    const regex = /^\d+$/;
-    return !regex.test(value) && value.length
-        ? messages.generate_license_error_incorrect_contact
-        : value.length > 16
-        ? messages.generate_license_error_contact_length
-        : null;
+    return !parseMax(value)?.isValid() ? messages.generate_license_error_incorrect_contact : null;
 };
 
 const VALIDATE_EMAIL = (value: string) => {
-    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const regex = /^[^.][^@]*@[^.]+(\.[^.\s]+)+$/;
     return regex.test(value.toLowerCase()) ? null : messages.generate_license_error_incorrect_email;
 };
 
