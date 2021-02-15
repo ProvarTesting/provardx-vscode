@@ -66,5 +66,7 @@ export const messages = {
     generate_license_error_incorrect_contact: 'Invalid contact number',
     generate_license_error_contact_length: 'Contact number cannot be more than 15 digits',
     generate_license_error_empty_field: 'Field cannot be empty',
-    generate_license_errorMessage: 'Registration Failed!'
+    generate_license_errorMessage: 'Registration Failed!',
+
+    terminal_name: 'ProvarDX CLI'
 };

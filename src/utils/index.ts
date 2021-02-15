@@ -8,6 +8,9 @@
 import { ChannelService } from './channelService';
 export const channelService = ChannelService.getInstance();
 
+import { TerminalService } from './terminalService';
+export const terminalService = TerminalService.getInstance();
+
 export { CommandBuilder } from './commandBuilder';
 export { CommandExecutor } from './commandExecutor';
 export { PreConditionChecker } from './preConditionChecker';
