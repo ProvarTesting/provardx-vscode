@@ -102,5 +102,5 @@ describe('Create Properties File', () => {
 
         await createPropertiesFile();
         expect(showInformationMessageStub.getCall(0).args[0]).to.equal(messages.create_properties_file_successMsg);
-    }).timeout(10000);
+    });
 });

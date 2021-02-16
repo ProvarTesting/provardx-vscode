@@ -9,14 +9,7 @@ import * as fs from 'fs';
 import * as vscode from 'vscode';
 import { COMMANDS } from '../constants';
 import { messages } from '../messages';
-import {
-    channelService,
-    CommandBuilder,
-    CommandExecutor,
-    PreConditionChecker,
-    ProgressNotification,
-    PropertiesFileSelector
-} from '../utils';
+import { terminalService, PreConditionChecker, PropertiesFileSelector } from '../utils';
 
 class Validate {
     constructor() {}
@@ -34,31 +27,9 @@ class Validate {
                 vscode.window.showErrorMessage(messages.error_invalid_file);
                 return;
             }
-            const cancellationTokenSource = new vscode.CancellationTokenSource();
-            const cancellationToken = cancellationTokenSource.token;
-
-            const command = new CommandBuilder('sfdx')
-                .withArg(COMMANDS.PROVARDX_VALIDATE)
-                .withFlag('-p', propertiesFileLocation);
-
-            const execution = new CommandExecutor(command, cancellationToken);
-            execution.processExitSubject.subscribe(async (data) => {
-                if (data !== undefined && data.toString() === '0') {
-                    vscode.window.showInformationMessage(
-                        `${COMMANDS.PROVARDX_VALIDATE} ${messages.notification_successful_execution_text}`
-                    );
-                }
-            });
-
-            execution.stderrSubject.subscribe(async (data) => {
-                vscode.window.showErrorMessage(
-                    `${COMMANDS.PROVARDX_VALIDATE} ${messages.notification_unsuccessful_execution_text}`
-                );
-            });
-
-            ProgressNotification.show(execution, cancellationTokenSource, COMMANDS.PROVARDX_VALIDATE);
-            channelService.showChannelOutput();
-            channelService.streamCommandOutput(execution);
+            const command = `sfdx ${COMMANDS.PROVARDX_VALIDATE} -p ${propertiesFileLocation}`;
+            terminalService.setCommand(command);
+            terminalService.showTerminal();
         }
     }
 }

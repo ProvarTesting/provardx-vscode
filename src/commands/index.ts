@@ -9,6 +9,7 @@ import * as vscode from 'vscode';
 import createPropertiesFile from './createPropertiesFile';
 import validate from './validate';
 import runTests from './runTests';
+import generateLicenseKey from './generateLicenseKey';
 
 const { registerCommand } = vscode.commands;
 
@@ -22,7 +23,8 @@ export default {
         return [
             registerCommand('provardx-vscode.createPropertiesFile', createPropertiesFile),
             registerCommand('provardx-vscode.validate', validate),
-            registerCommand('provardx-vscode.runTests', runTests)
+            registerCommand('provardx-vscode.runTests', runTests),
+            registerCommand('provardx-vscode.generateLicenseKey', generateLicenseKey)
         ];
     }
 };

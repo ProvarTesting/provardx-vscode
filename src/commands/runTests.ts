@@ -9,14 +9,7 @@ import * as fs from 'fs';
 import * as vscode from 'vscode';
 import { COMMANDS } from '../constants';
 import { messages } from '../messages';
-import {
-    channelService,
-    CommandBuilder,
-    CommandExecutor,
-    PreConditionChecker,
-    ProgressNotification,
-    PropertiesFileSelector
-} from '../utils';
+import { terminalService, PreConditionChecker, PropertiesFileSelector } from '../utils';
 const kill = require('tree-kill');
 
 class RunTests {
@@ -36,40 +29,11 @@ class RunTests {
                 return;
             }
 
-            const cancellationTokenSource = new vscode.CancellationTokenSource();
-            const cancellationToken = cancellationTokenSource.token;
-
-            const command = new CommandBuilder('sfdx')
-                .withArg(COMMANDS.PROVARDX_RUN_TESTS)
-                .withFlag('-p', propertiesFileLocation);
-
-            const execution = new CommandExecutor(command, cancellationToken);
-
-            execution.processExitSubject.subscribe(async (data) => {
-                if (data !== undefined && data.toString() === '0') {
-                    vscode.window.showInformationMessage(
-                        `${COMMANDS.PROVARDX_RUN_TESTS} ${messages.notification_successful_execution_text}`
-                    );
-                }
-            });
-
-            ProgressNotification.show(execution, cancellationTokenSource, COMMANDS.PROVARDX_RUN_TESTS);
-            channelService.showChannelOutput();
-            channelService.streamCommandOutput(execution);
+            const command = `sfdx ${COMMANDS.PROVARDX_RUN_TESTS} -p ${propertiesFileLocation}`;
+            terminalService.setCommand(command);
+            terminalService.showTerminal();
         }
     }
-
-    public async killExecution(childProcessPid: any, signal: string = 'SIGKILL') {
-        return killPromise(childProcessPid, signal);
-    }
-}
-
-async function killPromise(processId: number, signal: string): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-        kill(processId, signal, (err: {}) => {
-            err ? reject(err) : resolve();
-        });
-    });
 }
 
 export default async function runTests() {

@@ -4,6 +4,14 @@ All notable changes to the "provardx-vscode" extension will be documented in thi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.1.0 - 2021-01-21
+
+### Added
+
+-   Added new command:
+    -   ProvarDX: Generate License Key: Command to register the user and generate a temporary license key.
+-   Added support for webpack
+
 ## 1.0.1 - 2020-09-28
 
 ### Fixed
